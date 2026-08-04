@@ -1,7 +1,10 @@
 name: GitHub Pages
 
-# Siteyi statik olarak derler ve gh-pages dalına yayınlar.
-# Depo ayarlarında: Settings → Pages → Source: "Deploy from a branch" → gh-pages / (root)
+# Siteyi statik olarak derler ve GitHub Pages'e yayınlar.
+# Depo ayarlarındaki her iki kaynak seçeneğiyle de çalışır:
+#   • Settings → Pages → Source: "GitHub Actions"        → deploy işi yayınlar
+#   • Settings → Pages → Source: "Deploy from a branch"  → gh-pages dalı yayınlanır
+# Hangisi seçiliyse o devreye girer; diğeri sessizce atlanır.
 
 on:
   push:
@@ -12,13 +15,15 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,10 +38,15 @@ jobs:
       - name: Statik siteyi derle
         run: node scripts/build-static.mjs
         env:
-          # Proje sitesi https://<kullanici>.github.io/<repo>/ altında yayınlandığı için
+          # Proje sitesi https://<kullanici>.github.io/<repo>/ altında yayınlanır
           BASE_PATH: /${{ github.event.repository.name }}
 
-      - name: gh-pages dalına yayınla
+      - name: Pages çıktısını yükle
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+      - name: gh-pages dalını güncelle
         run: |
           cd out
           git init -b gh-pages
@@ -45,3 +55,17 @@ jobs:
           git add -A
           git commit -m "Yayın: ${{ github.sha }}"
           git push --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
+
+  # Kaynak "GitHub Actions" ise yayını bu iş yapar.
+  # Kaynak "Deploy from a branch" ise bu adım başarısız olur; site zaten gh-pages
+  # dalından yayınlandığı için hata yok sayılır.
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
