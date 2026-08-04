@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Nunito", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Baloo 2", "Nunito", ui-rounded, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-50 text-ink-800 antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    @apply text-ink-900;
+  }
+
+  ::selection {
+    @apply bg-mint-200 text-mint-900;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold
+      transition-all duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-mint-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-mint-500 text-white shadow-soft hover:-translate-y-0.5 hover:bg-mint-600 hover:shadow-lift;
+  }
+
+  .btn-coral {
+    @apply btn bg-coral-400 text-white shadow-soft hover:-translate-y-0.5 hover:bg-coral-500 hover:shadow-lift;
+  }
+
+  .btn-whatsapp {
+    @apply btn bg-[#25D366] text-white shadow-soft hover:-translate-y-0.5 hover:bg-[#1eb757] hover:shadow-lift;
+  }
+
+  .btn-ghost {
+    @apply btn border-2 border-mint-200 bg-white/80 text-mint-700 hover:-translate-y-0.5 hover:border-mint-300 hover:bg-white;
+  }
+
+  .card {
+    @apply rounded-4xl border border-white bg-white/85 shadow-soft backdrop-blur-sm;
+  }
+
+  .section {
+    @apply py-16 sm:py-24;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-mint-100 px-4 py-1.5 text-xs font-extrabold
+      uppercase tracking-[0.18em] text-mint-700;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:rounded-full
+      after:bg-mint-400 after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .field {
+    @apply w-full rounded-2xl border-2 border-cream-200 bg-white px-4 py-3 text-sm text-ink-800
+      outline-none transition placeholder:text-ink-400 focus:border-mint-300 focus:ring-4 focus:ring-mint-100;
+  }
+}
+
+@layer utilities {
+  /* Yumuşak pati deseni – arka planlarda kullanılıyor */
+  .paw-pattern {
+    background-image: radial-gradient(circle at 20% 20%, rgba(65, 200, 166, 0.12) 0 6px, transparent 7px),
+      radial-gradient(circle at 32% 14%, rgba(65, 200, 166, 0.12) 0 4px, transparent 5px),
+      radial-gradient(circle at 42% 22%, rgba(65, 200, 166, 0.12) 0 4px, transparent 5px),
+      radial-gradient(circle at 30% 34%, rgba(65, 200, 166, 0.12) 0 9px, transparent 10px);
+    background-size: 120px 120px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+    mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  }
+}
+
+/* Sohbet balonları */
+.chat-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(65, 200, 166, 0.5) transparent;
+}
+.chat-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: rgba(65, 200, 166, 0.5);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
