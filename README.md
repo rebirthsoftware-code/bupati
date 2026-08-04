@@ -68,6 +68,36 @@ Ziyaretçi (sohbet balonu)  ⇄  /api/chat/*   ⇄  Depolama  ⇄  /api/admin/* 
 | `memory` | Vercel'de, Upstash tanımlı değilse | Geçici (sunucu uyuyunca sıfırlanır) |
 | `upstash` | `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN` tanımlıysa **otomatik** | Kalıcı |
 
+## 🌐 GitHub Pages ile yayınlama (statik)
+
+Statik site `gh-pages` dalına derlenmiş olarak gönderildi. Yayına almak için depo ayarlarında iki adım:
+
+1. **Settings → General → Change visibility → Public**
+   (GitHub Pages ücretsiz planda yalnızca herkese açık depolarda çalışır; GitHub Pro varsa bu adım gerekmez.)
+2. **Settings → Pages → Source: "Deploy from a branch" → Branch: `gh-pages` / `(root)` → Save**
+
+Birkaç dakika içinde adres yayına girer:
+**https://rebirthsoftware-code.github.io/bupati/**
+
+Sonraki her push'ta `.github/workflows/pages.yml` siteyi yeniden derleyip `gh-pages` dalını günceller.
+
+Elle derlemek için:
+
+```bash
+BASE_PATH=/bupati npm run build:static   # çıktı: out/
+```
+
+### Statik yayında neler çalışır?
+
+| Özellik | Durum |
+| --- | --- |
+| 5 sayfa, tüm tasarım, animasyonlar, ürün filtreleri, SSS | ✅ Çalışır |
+| WhatsApp butonları, randevu formu (WhatsApp'a yönlendirme) | ✅ Çalışır |
+| Canlı destek balonu | ⚠️ Tanıtım modu — açılır, yazılır ama mesaj kliniğe ulaşmaz |
+| Yönetim paneli (`/admin`) ve çift taraflı sohbet | ❌ Sunucu gerektirir → Vercel |
+
+Sohbetin gerçekten çalışması için aşağıdaki Vercel adımlarını uygulayın; kod tarafında değişiklik gerekmez.
+
 ## ▲ Vercel'e yayınlama
 
 1. Vercel'de **New Project** → bu GitHub deposunu seçin (ayarlara dokunmadan **Deploy**).
