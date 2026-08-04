@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 const routes = ["", "/hizmetler", "/urunler", "/hakkimizda", "/iletisim"];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -9,6 +9,26 @@ const STORAGE_KEY = "patican.chat.conversation";
 const POLL_OPEN = 3000;
 const POLL_IDLE = 20000;
 
+/**
+ * GitHub Pages gibi sunucusuz ortamlarda API uçları bulunmaz. Bu modda balon
+ * tanıtım amaçlı çalışır: tasarım görünür, mesajlar yerel kalır ve ziyaretçi
+ * WhatsApp'a yönlendirilir. Vercel yayınında bu değişken tanımlı olmadığı için
+ * sohbet gerçek panelle çift taraflı çalışır.
+ */
+const DEMO = process.env.NEXT_PUBLIC_STATIC_DEMO === "1";
+
+const demoSettings: PublicSettings = {
+  online: true,
+  widgetEnabled: true,
+  agentName: "PatiCan Destek",
+  welcomeMessage:
+    "Merhaba! 🐾 Bu sayfa sitenin önizlemesi olduğu için mesajlarınız henüz kliniğe ulaşmıyor. Tasarımı rahatça deneyebilirsiniz.",
+  awayMessage: "",
+};
+
+const demoReply =
+  "Bu bir önizleme sohbeti 🐾 Canlı destek yayına alındığında mesajınız doğrudan kliniğe düşecek. Şimdilik WhatsApp'tan yazabilirsiniz.";
+
 type PublicSettings = {
   online: boolean;
   widgetEnabled: boolean;
@@ -50,6 +70,10 @@ export function ChatWidget() {
 
   /* --- ayarlar --- */
   useEffect(() => {
+    if (DEMO) {
+      setSettings(demoSettings);
+      return;
+    }
     let alive = true;
     const load = async () => {
       try {
@@ -71,6 +95,7 @@ export function ChatWidget() {
 
   /* --- kayıtlı sohbet --- */
   useEffect(() => {
+    if (DEMO) return;
     const saved = window.localStorage.getItem(STORAGE_KEY);
     if (saved) setConversationId(saved);
   }, []);
@@ -87,7 +112,7 @@ export function ChatWidget() {
 
   /* --- yoklama (polling) --- */
   const poll = useCallback(async () => {
-    if (!conversationId) return;
+    if (DEMO || !conversationId) return;
     try {
       const url = `/api/chat/messages?conversationId=${conversationId}${
         openRef.current ? `&since=${lastSeen.current}` : ""
@@ -145,6 +170,23 @@ export function ChatWidget() {
     event.preventDefault();
     setStarting(true);
     setError("");
+
+    if (DEMO) {
+      const now = Date.now();
+      setConversationId(`demo-${now}`);
+      setMessages([
+        {
+          id: `demo-welcome-${now}`,
+          conversationId: `demo-${now}`,
+          sender: "system",
+          text: demoSettings.welcomeMessage,
+          createdAt: now,
+        },
+      ]);
+      setStarting(false);
+      return;
+    }
+
     try {
       const res = await fetch("/api/chat/session", {
         method: "POST",
@@ -184,6 +226,23 @@ export function ChatWidget() {
     };
     setMessages((prev) => [...prev, optimistic]);
 
+    if (DEMO) {
+      window.setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: `demo-reply-${Date.now()}`,
+            conversationId,
+            sender: "agent",
+            text: demoReply,
+            createdAt: Date.now(),
+          },
+        ]);
+      }, 700);
+      setSending(false);
+      return;
+    }
+
     try {
       const res = await fetch("/api/chat/messages", {
         method: "POST",
@@ -212,6 +271,7 @@ export function ChatWidget() {
   };
 
   const statusText = useMemo(() => {
+    if (DEMO) return "Önizleme modu · tasarımı deneyebilirsiniz";
     if (!settings) return "Bağlanıyor…";
     return settings.online ? "Şu an çevrimiçi · genelde 2 dk içinde yanıt" : "Şu an çevrimdışı · mesaj bırakın";
   }, [settings]);
@@ -396,6 +456,23 @@ export function ChatWidget() {
                         </button>
                       )
                     )}
+                  </div>
+                )}
+
+                {DEMO && (
+                  <div className="mx-4 mb-2 flex items-center gap-2 rounded-2xl bg-cream-100 px-3 py-2">
+                    <p className="flex-1 text-[11px] leading-snug text-ink-600">
+                      Önizlemede mesajlar kliniğe iletilmez. Gerçek iletişim için:
+                    </p>
+                    <a
+                      href={whatsappLink("Merhaba, bilgi almak istiyorum.")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-whatsapp shrink-0 !px-3 !py-1.5 !text-[11px]"
+                    >
+                      <WhatsAppIcon className="h-3.5 w-3.5" />
+                      WhatsApp
+                    </a>
                   </div>
                 )}
 

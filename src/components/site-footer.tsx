@@ -49,11 +49,14 @@ export function SiteFooter() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link href="/admin" className="link-underline hover:text-white">
-                  Yönetim Paneli
-                </Link>
-              </li>
+              {/* Panel yalnızca sunuculu derlemede (Vercel) yayında olur */}
+              {process.env.NEXT_PUBLIC_STATIC_DEMO !== "1" && (
+                <li>
+                  <Link href="/admin" className="link-underline hover:text-white">
+                    Yönetim Paneli
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
 
