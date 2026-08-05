@@ -5,7 +5,7 @@ import type { ChatMessage } from "@/lib/chat/types";
 import { site, whatsappLink } from "@/data/site";
 import { PawIcon, WhatsAppIcon } from "@/components/icons";
 
-const STORAGE_KEY = "patican.chat.conversation";
+const STORAGE_KEY = "bupati.chat.conversation";
 const POLL_OPEN = 3000;
 const POLL_IDLE = 20000;
 
@@ -20,7 +20,7 @@ const DEMO = process.env.NEXT_PUBLIC_STATIC_DEMO === "1";
 const demoSettings: PublicSettings = {
   online: true,
   widgetEnabled: true,
-  agentName: "PatiCan Destek",
+  agentName: "BuPati Destek",
   welcomeMessage:
     "Merhaba! 🐾 Bu sayfa sitenin önizlemesi olduğu için mesajlarınız henüz kliniğe ulaşmıyor. Tasarımı rahatça deneyebilirsiniz.",
   awayMessage: "",
@@ -332,7 +332,7 @@ export function ChatWidget() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-display text-lg font-bold leading-tight">
-                    {settings?.agentName ?? "PatiCan Destek"}
+                    {settings?.agentName ?? "BuPati Destek"}
                   </p>
                   <p className="flex items-center gap-1.5 text-xs text-mint-100">
                     <span

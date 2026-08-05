@@ -8,7 +8,7 @@ import { PawIcon } from "@/components/icons";
 export const metadata: Metadata = {
   title: "Hakkımızda",
   description:
-    "PatiCan Veteriner Kliniği'nin hikâyesi, uzman hekim kadrosu ve çalışma prensipleri. 12 yıldır patilerin yanındayız.",
+    "BuPati Veteriner Kliniği'nin hikâyesi, uzman hekim kadrosu ve çalışma prensipleri. 12 yıldır patilerin yanındayız.",
 };
 
 const values = [

@@ -48,7 +48,7 @@ export default function HomePage() {
           <div>
             <SectionHeading
               center={false}
-              eyebrow="Neden PatiCan?"
+              eyebrow="Neden BuPati?"
               title="Stressiz bir klinik deneyimi mümkün"
               description="Kliniğe gelmek dostunuz için korkutucu olmak zorunda değil. Kedi ve köpekler için ayrı bekleme alanları, feromon destekli sakinleştirici ortam ve sabırlı bir ekip."
             />

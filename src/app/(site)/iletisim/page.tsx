@@ -9,7 +9,7 @@ import { PawIcon, WhatsAppIcon } from "@/components/icons";
 export const metadata: Metadata = {
   title: "İletişim & Randevu",
   description:
-    "PatiCan Veteriner Kliniği adres, telefon, çalışma saatleri ve WhatsApp randevu formu. Acil durumlar için 7/24 telefon desteği.",
+    "BuPati Veteriner Kliniği adres, telefon, çalışma saatleri ve WhatsApp randevu formu. Acil durumlar için 7/24 telefon desteği.",
 };
 
 const channels = [

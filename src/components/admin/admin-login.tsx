@@ -70,7 +70,7 @@ export function AdminLogin() {
 
         <p className="mt-5 text-center text-[11px] leading-relaxed text-ink-400">
           Şifre <code className="rounded bg-cream-200 px-1.5 py-0.5">ADMIN_PASSWORD</code> ortam değişkeni ile
-          belirlenir. Tanımlı değilse varsayılan: <strong>patican2024</strong>
+          belirlenir. Tanımlı değilse varsayılan: <strong>bupati2024</strong>
         </p>
       </form>
     </div>

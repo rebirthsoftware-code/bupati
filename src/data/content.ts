@@ -4,7 +4,7 @@ export const team = [
     role: "Kurucu Hekim · Dahiliye",
     emoji: "👩‍⚕️",
     gradient: "from-mint-200 to-mint-100",
-    bio: "12 yıllık klinik deneyimi ve kedi dostu muayene yaklaşımıyla PatiCan'ın kurucusu.",
+    bio: "12 yıllık klinik deneyimi ve kedi dostu muayene yaklaşımıyla BuPati'ın kurucusu.",
   },
   {
     name: "Vet. Hek. Mert Kaya",

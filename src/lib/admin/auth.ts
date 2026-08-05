@@ -1,15 +1,15 @@
 import { createHmac, timingSafeEqual } from "crypto";
 import { cookies } from "next/headers";
 
-const COOKIE = "patican_admin";
+const COOKIE = "bupati_admin";
 const MAX_AGE = 60 * 60 * 12; // 12 saat
 
 function secret() {
-  return process.env.ADMIN_SESSION_SECRET ?? process.env.ADMIN_PASSWORD ?? "patican-dev-secret";
+  return process.env.ADMIN_SESSION_SECRET ?? process.env.ADMIN_PASSWORD ?? "bupati-dev-secret";
 }
 
 export function adminPassword() {
-  return process.env.ADMIN_PASSWORD ?? "patican2024";
+  return process.env.ADMIN_PASSWORD ?? "bupati2024";
 }
 
 function sign(payload: string) {

@@ -27,15 +27,15 @@ interface Adapter {
   write(db: ChatDB): Promise<void>;
 }
 
-const g = globalThis as unknown as { __paticanChatDB?: ChatDB };
+const g = globalThis as unknown as { __bupatiChatDB?: ChatDB };
 
 class MemoryAdapter implements Adapter {
   async read() {
-    if (!g.__paticanChatDB) g.__paticanChatDB = emptyDB();
-    return g.__paticanChatDB;
+    if (!g.__bupatiChatDB) g.__bupatiChatDB = emptyDB();
+    return g.__bupatiChatDB;
   }
   async write(db: ChatDB) {
-    g.__paticanChatDB = db;
+    g.__bupatiChatDB = db;
   }
 }
 
@@ -66,7 +66,7 @@ class FileAdapter implements Adapter {
 class UpstashAdapter implements Adapter {
   private url: string;
   private token: string;
-  private key = "patican:chat:db";
+  private key = "bupati:chat:db";
 
   constructor(url: string, token: string) {
     this.url = url.replace(/\/$/, "");
@@ -166,7 +166,7 @@ export async function updateSettings(patch: Partial<ChatSettings>): Promise<Chat
     ...db.settings,
     ...(typeof patch.online === "boolean" ? { online: patch.online } : {}),
     ...(typeof patch.widgetEnabled === "boolean" ? { widgetEnabled: patch.widgetEnabled } : {}),
-    ...(patch.agentName !== undefined ? { agentName: clean(patch.agentName, 60) || "PatiCan Destek" } : {}),
+    ...(patch.agentName !== undefined ? { agentName: clean(patch.agentName, 60) || "BuPati Destek" } : {}),
     ...(patch.welcomeMessage !== undefined ? { welcomeMessage: clean(patch.welcomeMessage, 400) } : {}),
     ...(patch.awayMessage !== undefined ? { awayMessage: clean(patch.awayMessage, 400) } : {}),
   };

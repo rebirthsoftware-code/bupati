@@ -10,7 +10,7 @@ import { PawIcon, WhatsAppIcon } from "@/components/icons";
 export const metadata: Metadata = {
   title: "Hizmetlerimiz",
   description:
-    "Muayene, aşı, cerrahi, laboratuvar, görüntüleme, diş sağlığı, pet kuaför, mikroçip ve acil servis. PatiCan Veteriner Kliniği'nin tüm hizmetleri.",
+    "Muayene, aşı, cerrahi, laboratuvar, görüntüleme, diş sağlığı, pet kuaför, mikroçip ve acil servis. BuPati Veteriner Kliniği'nin tüm hizmetleri.",
 };
 
 const groups = [

@@ -1,4 +1,4 @@
-# 🐾 PatiCan Veteriner Kliniği — Web Sitesi
+# 🐾 BuPati Veteriner Kliniği — Web Sitesi
 
 Veteriner kliniği için hazırlanmış, tatlı pati temalı modern web sitesi.
 Next.js 15 (App Router) + TypeScript + Tailwind CSS ile geliştirildi.
@@ -25,7 +25,7 @@ npm run dev
 
 Site: <http://localhost:3000> · Panel: <http://localhost:3000/admin>
 
-Varsayılan panel şifresi: **patican2024** (`.env.local` içindeki `ADMIN_PASSWORD` ile değiştirin)
+Varsayılan panel şifresi: **bupati2024** (`.env.local` içindeki `ADMIN_PASSWORD` ile değiştirin)
 
 ## 📝 Klinik bilgilerini değiştirme
 
@@ -35,7 +35,7 @@ Tüm iletişim ve kimlik bilgileri tek dosyada:
 
 ```ts
 export const site = {
-  name: "PatiCan Veteriner Kliniği",
+  name: "BuPati Veteriner Kliniği",
   whatsapp: "905321234567", // ülke kodu ile, + ve boşluk olmadan
   phoneDisplay: "0532 123 45 67",
   address: "...",

@@ -41,9 +41,9 @@ export type ChatDB = {
 
 export const defaultSettings: ChatSettings = {
   online: true,
-  agentName: "PatiCan Destek",
+  agentName: "BuPati Destek",
   welcomeMessage:
-    "Merhaba! 🐾 Ben PatiCan destek ekibinden. Dostunuzla ilgili sorunuzu yazın, hemen yanıtlayalım.",
+    "Merhaba! 🐾 Ben BuPati destek ekibinden. Dostunuzla ilgili sorunuzu yazın, hemen yanıtlayalım.",
   awayMessage:
     "Şu an çevrimdışıyız 🌙 Mesajınızı bırakın, klinik açılır açılmaz size dönüş yapalım. Acil durumlar için lütfen telefonla arayın.",
   widgetEnabled: true,

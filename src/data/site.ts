@@ -4,16 +4,16 @@
  */
 
 export const site = {
-  name: "PatiCan Veteriner Kliniği",
-  shortName: "PatiCan",
+  name: "BuPati Veteriner Kliniği",
+  shortName: "BuPati",
   tagline: "Minik dostlarınız için sıcak bir yuva",
   description:
-    "PatiCan Veteriner Kliniği; muayene, aşı, cerrahi, laboratuvar ve pet kuaför hizmetleriyle kedi, köpek ve egzotik dostlarınızın yanında.",
+    "BuPati Veteriner Kliniği; muayene, aşı, cerrahi, laboratuvar ve pet kuaför hizmetleriyle kedi, köpek ve egzotik dostlarınızın yanında.",
   // WhatsApp numarası: ülke kodu ile, boşluksuz ve + işaretsiz yazın. (Örn: 905321234567)
   whatsapp: "905321234567",
   phoneDisplay: "0532 123 45 67",
   phoneHref: "+905321234567",
-  email: "merhaba@paticanveteriner.com",
+  email: "merhaba@bupati.com",
   address: "Bahçelievler Mah. Sevgi Sok. No: 12/A, Kadıköy / İstanbul",
   mapsUrl: "https://maps.google.com/?q=Kadıköy+İstanbul",
   emergencyNote: "Acil durumlar için 7/24 telefon hattımız açıktır.",
