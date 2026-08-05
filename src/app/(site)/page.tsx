@@ -60,8 +60,13 @@ export default function HomePage() {
                 { t: "Aşı hatırlatma", d: "Zamanı gelince WhatsApp'tan yazarız." },
                 { t: "Tam donanımlı ameliyathane", d: "Canlı monitörizasyonla güvenli anestezi." },
                 { t: "7/24 acil danışma", d: "Gece de olsa telefonumuz açık." },
-              ].map((item) => (
-                <li key={item.t} className="flex gap-3 rounded-3xl bg-cream-100 p-4">
+              ].map((item, i) => (
+                <li
+                  key={item.t}
+                  data-reveal
+                  style={{ transitionDelay: `${i * 70}ms` }}
+                  className="flex gap-3 rounded-3xl bg-cream-100 p-4"
+                >
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-mint-500 text-white">
                     <PawIcon className="h-4 w-4" />
                   </span>
@@ -74,7 +79,7 @@ export default function HomePage() {
             </ul>
           </div>
 
-          <div className="relative">
+          <div className="relative" data-reveal>
             <div className="card overflow-hidden p-0">
               <div className="bg-gradient-to-br from-mint-500 to-mint-600 px-7 py-8 text-white">
                 <h3 className="font-display text-2xl font-bold text-white">Çalışma Saatlerimiz</h3>
@@ -118,7 +123,12 @@ export default function HomePage() {
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
-            <div key={step.title} className="relative card p-6 text-center">
+            <div
+              key={step.title}
+              data-reveal
+              style={{ transitionDelay: `${i * 90}ms` }}
+              className="relative card p-6 text-center"
+            >
               <span className="absolute -top-4 left-1/2 grid h-9 w-9 -translate-x-1/2 place-items-center rounded-full bg-mint-500 text-sm font-extrabold text-white shadow-soft">
                 {i + 1}
               </span>

@@ -15,7 +15,7 @@ export function ProductCard({ product }: { product: Product }) {
   )})`;
 
   return (
-    <article className="group card flex h-full flex-col overflow-hidden p-0 transition duration-300 hover:-translate-y-1.5 hover:shadow-lift">
+    <article className="group card flex h-full flex-col overflow-hidden p-0 animate-fade-up transition duration-300 hover:-translate-y-1.5 hover:shadow-lift">
       <div className={`relative flex h-40 items-center justify-center bg-gradient-to-br ${product.gradient}`}>
         <PawIcon className="absolute -right-4 -top-4 h-20 w-20 text-white/40" />
         <PawIcon className="absolute -bottom-5 -left-3 h-16 w-16 text-white/30" />

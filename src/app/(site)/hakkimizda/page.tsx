@@ -63,8 +63,13 @@ export default function AboutPage() {
           description="Kliniğimizin her kararı bu dört başlıktan geçer."
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {values.map((v) => (
-            <div key={v.title} className="card p-6 text-center transition hover:-translate-y-1.5 hover:shadow-lift">
+          {values.map((v, i) => (
+            <div
+              key={v.title}
+              data-reveal
+              style={{ transitionDelay: `${i * 90}ms` }}
+              className="card p-6 text-center hover:-translate-y-1.5 hover:shadow-lift"
+            >
               <span className="text-4xl" aria-hidden>
                 {v.emoji}
               </span>
@@ -85,8 +90,13 @@ export default function AboutPage() {
             description="Hepimiz kendi patili dostlarımızla yaşıyoruz; bu yüzden endişenizi çok iyi anlıyoruz."
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((member) => (
-              <article key={member.name} className="card overflow-hidden p-0 text-center">
+            {team.map((member, i) => (
+              <article
+                key={member.name}
+                data-reveal
+                style={{ transitionDelay: `${i * 90}ms` }}
+                className="card overflow-hidden p-0 text-center"
+              >
                 <div className={`relative flex h-40 items-center justify-center bg-gradient-to-br ${member.gradient}`}>
                   <PawIcon className="absolute -left-4 -top-4 h-20 w-20 text-white/40" />
                   <span className="relative text-6xl" aria-hidden>
@@ -113,7 +123,7 @@ export default function AboutPage() {
         <SectionHeading eyebrow="Hikâyemiz" title="Küçük bir muayenehaneden bugüne" />
         <ol className="relative mx-auto mt-12 max-w-3xl border-l-2 border-dashed border-mint-200 pl-8">
           {timeline.map((item) => (
-            <li key={item.year} className="relative pb-10 last:pb-0">
+            <li key={item.year} data-reveal className="relative pb-10 last:pb-0">
               <span className="absolute -left-[41px] grid h-8 w-8 place-items-center rounded-full bg-mint-500 text-white shadow-soft">
                 <PawIcon className="h-4 w-4" />
               </span>

@@ -16,7 +16,7 @@ export function SectionHeading({
   center?: boolean;
 }) {
   return (
-    <div className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
+    <div data-reveal className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
       {eyebrow && (
         <span className="eyebrow">
           <PawIcon className="h-3.5 w-3.5" />
@@ -33,11 +33,12 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
   return (
     <article
       id={service.slug}
-      className="group card scroll-mt-28 p-6 transition duration-300 hover:-translate-y-1.5 hover:shadow-lift"
-      style={{ animationDelay: `${index * 60}ms` }}
+      data-reveal
+      className="group card scroll-mt-28 p-6 hover:-translate-y-1.5 hover:shadow-lift"
+      style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className="flex items-start justify-between gap-3">
-        <span className="grid h-14 w-14 place-items-center rounded-2xl bg-mint-100 text-mint-600 transition group-hover:bg-mint-500 group-hover:text-white">
+        <span className="grid h-14 w-14 place-items-center rounded-2xl bg-mint-100 text-mint-600 transition duration-300 group-hover:scale-110 group-hover:bg-mint-500 group-hover:text-white">
           <ServiceIcon name={service.icon} className="h-7 w-7" />
         </span>
         {service.price && (
@@ -71,8 +72,8 @@ export function ServiceCard({ service, index = 0 }: { service: Service; index?: 
 export function StatsBand() {
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-      {site.stats.map((stat) => (
-        <div key={stat.label} className="card p-5 text-center">
+      {site.stats.map((stat, i) => (
+        <div key={stat.label} data-reveal style={{ transitionDelay: `${i * 90}ms` }} className="card p-5 text-center">
           <p className="font-display text-3xl font-extrabold text-mint-600 sm:text-4xl">{stat.value}</p>
           <p className="mt-1 text-xs font-bold uppercase tracking-wide text-ink-400">{stat.label}</p>
         </div>
@@ -93,7 +94,7 @@ export function TestimonialCard({
   rating: number;
 }) {
   return (
-    <figure className="card flex h-full flex-col p-6">
+    <figure data-reveal className="card flex h-full flex-col p-6">
       <div className="flex gap-1 text-coral-400">
         {Array.from({ length: rating }).map((_, i) => (
           <StarIcon key={i} className="h-4 w-4" />
@@ -169,15 +170,29 @@ export function PageHero({
     <section className="relative overflow-hidden bg-gradient-to-b from-mint-100 via-cream-100 to-cream-50 pb-16 pt-14 sm:pb-20 sm:pt-20">
       <div className="paw-pattern absolute inset-0 opacity-60" aria-hidden />
       <div className="container-x relative text-center">
-        <span className="eyebrow">
+        <span className="eyebrow" data-reveal>
           <PawIcon className="h-3.5 w-3.5" />
           {eyebrow}
         </span>
-        <h1 className="mx-auto mt-5 max-w-3xl text-balance text-4xl font-extrabold leading-tight sm:text-5xl">
+        <h1
+          data-reveal
+          style={{ transitionDelay: "90ms" }}
+          className="mx-auto mt-5 max-w-3xl text-balance text-4xl font-extrabold leading-tight sm:text-5xl"
+        >
           {title}
         </h1>
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-600">{description}</p>
-        {children && <div className="mt-8">{children}</div>}
+        <p
+          data-reveal
+          style={{ transitionDelay: "180ms" }}
+          className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-600"
+        >
+          {description}
+        </p>
+        {children && (
+          <div data-reveal style={{ transitionDelay: "270ms" }} className="mt-8">
+            {children}
+          </div>
+        )}
       </div>
     </section>
   );

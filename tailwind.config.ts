@@ -81,6 +81,37 @@ const config: Config = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        /* Pati izinin yere basması: hafif büyüyerek belirir, sonra iz gibi soluklaşır */
+        "paw-step": {
+          "0%": { opacity: "0", transform: "scale(0.4) rotate(var(--paw-rot, 0deg))" },
+          "45%": { opacity: "1", transform: "scale(1.08) rotate(var(--paw-rot, 0deg))" },
+          "70%": { opacity: "1", transform: "scale(1) rotate(var(--paw-rot, 0deg))" },
+          "100%": { opacity: "0.45", transform: "scale(1) rotate(var(--paw-rot, 0deg))" },
+        },
+        /* Açılış perdesi yukarı kalkar */
+        "curtain-up": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-101%)" },
+        },
+        "logo-pop": {
+          "0%": { opacity: "0", transform: "scale(0.6) rotate(-14deg)" },
+          "60%": { opacity: "1", transform: "scale(1.12) rotate(4deg)" },
+          "100%": { opacity: "1", transform: "scale(1) rotate(0deg)" },
+        },
+        /* Mobil menü paneli */
+        "menu-in": {
+          "0%": { opacity: "0", transform: "translateY(-14px) scale(0.97)" },
+          "60%": { opacity: "1", transform: "translateY(3px) scale(1.005)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        "menu-item": {
+          "0%": { opacity: "0", transform: "translateX(-14px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "backdrop-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         "paw-float": "paw-float 6s ease-in-out infinite",
@@ -89,6 +120,12 @@ const config: Config = {
         wiggle: "wiggle 1.2s ease-in-out infinite",
         "pulse-ring": "pulse-ring 2s ease-out infinite",
         marquee: "marquee 30s linear infinite",
+        "paw-step": "paw-step 0.75s cubic-bezier(0.34, 1.4, 0.5, 1) both",
+        "curtain-up": "curtain-up 0.75s cubic-bezier(0.76, 0, 0.24, 1) forwards",
+        "logo-pop": "logo-pop 0.7s cubic-bezier(0.34, 1.5, 0.5, 1) both",
+        "menu-in": "menu-in 0.38s cubic-bezier(0.34, 1.4, 0.6, 1) both",
+        "menu-item": "menu-item 0.35s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "backdrop-in": "backdrop-in 0.3s ease-out both",
       },
     },
   },

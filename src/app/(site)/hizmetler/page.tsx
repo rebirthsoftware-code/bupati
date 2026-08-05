@@ -45,7 +45,7 @@ export default function ServicesPage() {
 
       {groups.map((group, gi) => (
         <section key={group.title} className={gi === 0 ? "section container-x" : "container-x pb-16 sm:pb-24"}>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3" data-reveal>
             <span className="grid h-10 w-10 place-items-center rounded-2xl bg-mint-100 text-mint-600">
               <PawIcon className="h-5 w-5" />
             </span>

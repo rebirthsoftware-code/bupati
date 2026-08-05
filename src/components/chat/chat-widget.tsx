@@ -299,7 +299,7 @@ export function ChatWidget() {
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Canlı desteği kapat" : "Canlı destek sohbetini aç"}
-          className="relative grid h-14 w-14 place-items-center rounded-full bg-mint-500 text-white shadow-lift transition hover:-translate-y-0.5 hover:bg-mint-600"
+          className="group relative grid h-14 w-14 place-items-center rounded-full bg-mint-500 text-white shadow-lift transition hover:-translate-y-0.5 hover:bg-mint-600"
         >
           {!open && settings?.online && (
             <span className="absolute inset-0 animate-pulse-ring rounded-full bg-mint-400" aria-hidden />
@@ -309,7 +309,7 @@ export function ChatWidget() {
               <path d="M6 6l12 12M18 6 6 18" strokeLinecap="round" />
             </svg>
           ) : (
-            <PawIcon className="relative h-7 w-7" />
+            <PawIcon className="relative h-7 w-7 transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110" />
           )}
           {!open && unread > 0 && (
             <span className="absolute -right-1 -top-1 grid h-6 min-w-6 place-items-center rounded-full bg-coral-500 px-1.5 text-xs font-extrabold text-white">

@@ -58,13 +58,15 @@ export default function ContactPage() {
 
       <section className="container-x -mt-6 relative z-10">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {channels.map((c) => (
+          {channels.map((c, i) => (
             <a
               key={c.title}
               href={c.href}
               target={c.href.startsWith("http") ? "_blank" : undefined}
               rel="noopener noreferrer"
-              className="card group flex flex-col p-6 transition hover:-translate-y-1.5 hover:shadow-lift"
+              data-reveal
+              style={{ transitionDelay: `${i * 90}ms` }}
+              className="card group flex flex-col p-6 hover:-translate-y-1.5 hover:shadow-lift"
             >
               <span className="text-3xl" aria-hidden>
                 {c.emoji}
@@ -84,7 +86,7 @@ export default function ContactPage() {
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <AppointmentForm />
 
-          <div className="space-y-6">
+          <div className="space-y-6" data-reveal>
             <div className="card overflow-hidden p-0">
               <div className="bg-gradient-to-br from-mint-500 to-mint-600 px-7 py-6 text-white">
                 <h2 className="font-display text-xl font-bold text-white">Çalışma Saatleri</h2>

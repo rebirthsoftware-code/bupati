@@ -26,7 +26,12 @@ export default function ProductsPage() {
       >
         <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-3">
           {steps.map((s, i) => (
-            <div key={s.title} className="card p-5 text-left">
+            <div
+              key={s.title}
+              data-reveal
+              style={{ transitionDelay: `${i * 100}ms` }}
+              className="card p-5 text-left"
+            >
               <div className="flex items-center gap-2">
                 <span className="text-2xl" aria-hidden>
                   {s.emoji}

@@ -35,19 +35,25 @@ export function PawDecor({ className = "" }: { className?: string }) {
   );
 }
 
-/** İki bölüm arasına yerleşen pati izi şeridi */
+/**
+ * İki bölüm arasına yerleşen pati izi şeridi.
+ * Ekrana girdiğinde patiler soldan sağa tek tek "yürüyerek" belirir.
+ */
 export function PawTrail({ count = 7 }: { count?: number }) {
   return (
-    <div className="flex items-center justify-center gap-3 py-2" aria-hidden>
+    <div className="paw-trail flex items-center justify-center gap-3 py-2" data-reveal aria-hidden>
       {Array.from({ length: count }).map((_, i) => (
         <PawIcon
           key={i}
+          data-paw=""
           className="text-mint-300"
           style={{
             width: 16 + (i % 3) * 4,
             height: 16 + (i % 3) * 4,
-            transform: `rotate(${i % 2 === 0 ? -18 : 14}deg) translateY(${i % 2 === 0 ? 0 : 8}px)`,
-            opacity: 0.35 + (i % 4) * 0.12,
+            transitionDelay: `${i * 90}ms`,
+            ["--paw-rot" as string]: `${i % 2 === 0 ? -18 : 14}deg`,
+            ["--paw-y" as string]: `${i % 2 === 0 ? 0 : 8}px`,
+            ["--paw-op" as string]: `${0.35 + (i % 4) * 0.12}`,
           }}
         />
       ))}
